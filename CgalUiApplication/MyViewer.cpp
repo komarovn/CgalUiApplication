@@ -1,5 +1,7 @@
 #include "MyViewer.h"
 
+#include <QMouseEvent>
+
 #define PI 3.1415926535
 
 MyViewer::MyViewer(QWidget* parent) : QGLViewer(parent) {
@@ -33,7 +35,7 @@ std::vector<int> MyViewer::getSelectedPoints(const QPoint &point) {
         float t = (points[i].z() - orig.z) / dir.z;
         float x = orig.x + dir.x * t;
         float y = orig.y + dir.y * t;
-        if (abs(points[i].y() - y) < 0.01f && abs(points[i].x() - x) < 0.01f) {
+        if (abs(points[i].y() - y) < 0.04f && abs(points[i].x() - x) < 0.04f) {
             selected.push_back(i);
         }
     }
@@ -56,12 +58,14 @@ void MyViewer::postSelection(const QPoint &point) {
 
 void MyViewer::mousePressEvent(QMouseEvent *event) {
     if (isRemovePointMode) {
-        //const QPoint point = QMouseEvent::pos();
-        //std::vector<int> selected = getSelectedPoints(point);
+        const QPoint point = event->pos();
+        std::vector<int> selected = getSelectedPoints(point);
 
-        //for (int i = 0; i < selected.size(); i++) {
-            //points.erase(selected[i]);
-        //}
+        for (int i = 0; i < selected.size(); i++) {
+            points.erase(points.begin() + selected[i]);
+        }
+
+        update();
     }
     else {
         QGLViewer::mousePressEvent(event);
