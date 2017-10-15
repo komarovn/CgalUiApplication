@@ -3,13 +3,17 @@
 #define PI 3.1415926535
 
 MyViewer::MyViewer(QWidget* parent) : QGLViewer(parent) {
+    setBackgroundColor(QColor(139, 169, 180));
+    setForegroundColor(QColor(139, 169, 180));
 }
 
 void MyViewer::draw() {
-    glPointSize(3.0);
-    glColor3f(0.0f, 1.0f, 0.0f);
+    glPointSize(2.0);
+    //glColor3f(1.0f, .6f, 0.8f);
     glBegin(GL_POINTS);
     for (int i = 0; i < points.size(); ++i) {
+        float color = (double) rand() / (RAND_MAX);
+        glColor3f(1.0f, color, color * color);
         glVertex3f(points[i].x(), points[i].y(), points[i].z());
     }
     glEnd();
@@ -29,7 +33,7 @@ std::vector<int> MyViewer::getSelectedPoints(const QPoint &point) {
         float t = (points[i].z() - orig.z) / dir.z;
         float x = orig.x + dir.x * t;
         float y = orig.y + dir.y * t;
-        if (abs(points[i].y() - y) < 0.1f && abs(points[i].x() - x) < 0.1f) {
+        if (abs(points[i].y() - y) < 0.01f && abs(points[i].x() - x) < 0.01f) {
             selected.push_back(i);
         }
     }
@@ -52,7 +56,7 @@ void MyViewer::postSelection(const QPoint &point) {
 
 void MyViewer::mousePressEvent(QMouseEvent *event) {
     if (isRemovePointMode) {
-        //const QPoint point = event->pos();
+        //const QPoint point = QMouseEvent::pos();
         //std::vector<int> selected = getSelectedPoints(point);
 
         //for (int i = 0; i < selected.size(); i++) {
