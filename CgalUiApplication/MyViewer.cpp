@@ -11,7 +11,6 @@ MyViewer::MyViewer(QWidget* parent) : QGLViewer(parent) {
 
 void MyViewer::draw() {
     glPointSize(2.0);
-    //glColor3f(1.0f, .6f, 0.8f);
     glBegin(GL_POINTS);
     for (int i = 0; i < points.size(); ++i) {
         float color = (double) rand() / (RAND_MAX);
@@ -19,6 +18,10 @@ void MyViewer::draw() {
         glVertex3f(points[i].x(), points[i].y(), points[i].z());
     }
     glEnd();
+    if (isSpline) {
+        BSpline spline = BSpline(&points);
+        drawBSpline(spline);
+    }
 }
 
 void MyViewer::init() {
@@ -137,4 +140,8 @@ void MyViewer::generateSphereVolume() {
             }
         }
     }
+}
+
+void MyViewer::drawBSpline(BSpline bSpline) {
+    bSpline.drawSplineCurve();
 }

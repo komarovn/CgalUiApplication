@@ -1,4 +1,5 @@
 #include "CgalUiApplication.h"
+#include "BSpline.h"
 
 CgalUiApplication::CgalUiApplication(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +12,7 @@ CgalUiApplication::CgalUiApplication(QWidget *parent)
     connect(ui.buildCubeVolumeButton, SIGNAL(clicked()), this, SLOT(buildCubeVolume()));
     connect(ui.buildSphereButton, SIGNAL(clicked()), this, SLOT(buildSphere()));
     connect(ui.buildSphereVolumeButton, SIGNAL(clicked()), this, SLOT(buildSphereVolume()));
+    connect(ui.drawSplineButton, SIGNAL(clicked()), this, SLOT(drawSpline()));
 }
 
 void CgalUiApplication::addPoint() {
@@ -42,4 +44,8 @@ void CgalUiApplication::buildSphere() {
 
 void CgalUiApplication::buildSphereVolume() {
     ui.widget->generateSphereVolume();
+}
+
+void CgalUiApplication::drawSpline() {
+    ui.widget->isSpline = !ui.widget->isSpline;
 }

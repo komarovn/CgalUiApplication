@@ -4,6 +4,7 @@
 #include <typedefs.h>
 #include <qmessagebox.h>
 #include <qmouseeventtransition.h>
+#include "BSpline.h"
 
 class MyViewer : public QGLViewer {
 public:
@@ -15,6 +16,8 @@ public:
     void generateCubeVolume();
     void generateSphere();
     void generateSphereVolume();
+    void drawBSpline(BSpline bSpline);
+    bool isSpline = false;
 protected:
     virtual void draw();
     virtual void init();
