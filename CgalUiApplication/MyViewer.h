@@ -10,8 +10,10 @@ class MyViewer : public QGLViewer {
 public:
     MyViewer(QWidget* parent);
     Points3 points;
+    Point_3* movePoint = nullptr;
     int k;
     bool isRemovePointMode = false;
+    bool isMovePointMode = false;
     void removeAllPoints();
     void generateCube();
     void generateCubeVolume();
@@ -24,6 +26,8 @@ protected:
     virtual void init();
     virtual void postSelection(const QPoint &point);
     virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
 private:
     std::vector<int> getSelectedPoints(const QPoint &point);
 };

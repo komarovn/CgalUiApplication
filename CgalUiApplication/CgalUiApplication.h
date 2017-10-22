@@ -13,6 +13,7 @@ public:
     void addPoint();
     void removePoints();
     void removePoint();
+    void movePoint();
     void buildCube();
     void buildCubeVolume();
     void buildSphere();

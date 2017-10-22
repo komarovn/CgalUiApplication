@@ -1,6 +1,7 @@
 #include "MyViewer.h"
 
 #include <QMouseEvent>
+#include <typedefs.h>
 
 #define PI 3.1415926535
 
@@ -70,8 +71,36 @@ void MyViewer::mousePressEvent(QMouseEvent *event) {
 
         update();
     }
-    else {
+    else if (isMovePointMode) {
+        const QPoint point = event->pos();
+        std::vector<int> selected = getSelectedPoints(point);
+
+        if (selected.size() > 0) {
+            movePoint = &points[selected[0]];
+        }
+    } else {
         QGLViewer::mousePressEvent(event);
+    }
+}
+
+void MyViewer::mouseMoveEvent(QMouseEvent *event) {
+    if (isMovePointMode) {
+        if (movePoint != nullptr) {
+            int x = event->x();
+            int y = event->y();
+            int h = 0;
+            //TODO: transform x and y to the coordinates in 3d.
+        }
+    } else {
+        QGLViewer::mouseMoveEvent(event);
+    }
+}
+
+void MyViewer::mouseReleaseEvent(QMouseEvent *event) {
+    if (isMovePointMode) {
+        movePoint = nullptr;
+    } else {
+        QGLViewer::mouseReleaseEvent(event);
     }
 }
 
