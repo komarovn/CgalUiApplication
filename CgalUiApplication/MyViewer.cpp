@@ -143,5 +143,5 @@ void MyViewer::generateSphereVolume() {
 }
 
 void MyViewer::drawBSpline(BSpline bSpline) {
-    bSpline.drawSplineCurve();
+    bSpline.drawSplineCurve(k);
 }

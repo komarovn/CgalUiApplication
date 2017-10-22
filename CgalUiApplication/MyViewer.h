@@ -10,6 +10,7 @@ class MyViewer : public QGLViewer {
 public:
     MyViewer(QWidget* parent);
     Points3 points;
+    int k;
     bool isRemovePointMode = false;
     void removeAllPoints();
     void generateCube();

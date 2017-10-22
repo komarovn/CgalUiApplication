@@ -12,7 +12,8 @@ CgalUiApplication::CgalUiApplication(QWidget *parent)
     connect(ui.buildCubeVolumeButton, SIGNAL(clicked()), this, SLOT(buildCubeVolume()));
     connect(ui.buildSphereButton, SIGNAL(clicked()), this, SLOT(buildSphere()));
     connect(ui.buildSphereVolumeButton, SIGNAL(clicked()), this, SLOT(buildSphereVolume()));
-    connect(ui.drawSplineButton, SIGNAL(clicked()), this, SLOT(drawSpline()));
+    connect(ui.drawSpline3Button, SIGNAL(clicked()), this, SLOT(drawSpline3()));
+    connect(ui.drawSpline2Button, SIGNAL(clicked()), this, SLOT(drawSpline2()));
 }
 
 void CgalUiApplication::addPoint() {
@@ -46,6 +47,12 @@ void CgalUiApplication::buildSphereVolume() {
     ui.widget->generateSphereVolume();
 }
 
-void CgalUiApplication::drawSpline() {
+void CgalUiApplication::drawSpline3() {
     ui.widget->isSpline = !ui.widget->isSpline;
+    ui.widget->k = 3;
+}
+
+void CgalUiApplication::drawSpline2() {
+    ui.widget->isSpline = !ui.widget->isSpline;
+    ui.widget->k = 2;
 }

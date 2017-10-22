@@ -17,7 +17,8 @@ public:
     void buildCubeVolume();
     void buildSphere();
     void buildSphereVolume();
-    void drawSpline();
+    void drawSpline3();
+    void drawSpline2();
 private:
     Ui::CgalUiApplicationClass ui;
 };
