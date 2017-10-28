@@ -10,7 +10,9 @@ class MyViewer : public QGLViewer {
 public:
     MyViewer(QWidget* parent);
     Points3 points;
-    Point_3* movePoint = nullptr;
+    //Point_3* movePoint = nullptr;
+    size_t movePointIndex = -1;
+    QPoint* oldMousePosition;
     int k;
     bool isRemovePointMode = false;
     bool isMovePointMode = false;

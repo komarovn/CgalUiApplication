@@ -76,8 +76,11 @@ void MyViewer::mousePressEvent(QMouseEvent *event) {
         std::vector<int> selected = getSelectedPoints(point);
 
         if (selected.size() > 0) {
-            movePoint = &points[selected[0]];
+            //movePoint = &points[selected[0]];
+            movePointIndex = selected[0];
         }
+
+        oldMousePosition = new QPoint(point);
     } else {
         QGLViewer::mousePressEvent(event);
     }
@@ -85,11 +88,20 @@ void MyViewer::mousePressEvent(QMouseEvent *event) {
 
 void MyViewer::mouseMoveEvent(QMouseEvent *event) {
     if (isMovePointMode) {
-        if (movePoint != nullptr) {
+        if (movePointIndex != -1) {
             int x = event->x();
             int y = event->y();
-            int h = 0;
-            //TODO: transform x and y to the coordinates in 3d.
+
+            int dx = x - oldMousePosition->x();
+            int dy = y - oldMousePosition->y();
+
+            delete oldMousePosition;
+            oldMousePosition = new QPoint(event->pos());
+
+            Point_3 oldPoint = points.at(movePointIndex);
+            points.at(movePointIndex) = Point_3(oldPoint.x() + 0.01f * dx, oldPoint.y() + 0.01f * dy, oldPoint.z());
+
+            update();
         }
     } else {
         QGLViewer::mouseMoveEvent(event);
@@ -98,7 +110,9 @@ void MyViewer::mouseMoveEvent(QMouseEvent *event) {
 
 void MyViewer::mouseReleaseEvent(QMouseEvent *event) {
     if (isMovePointMode) {
-        movePoint = nullptr;
+        //movePoint = nullptr;
+        movePointIndex = -1;
+        oldMousePosition = nullptr;
     } else {
         QGLViewer::mouseReleaseEvent(event);
     }
