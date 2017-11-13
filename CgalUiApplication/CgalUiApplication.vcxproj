@@ -85,6 +85,8 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyViewer.cpp" />
+    <ClCompile Include="PNOctahedron.cpp" />
+    <ClCompile Include="PNTriangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CgalUiApplication.h">
@@ -114,6 +116,9 @@
     <ClInclude Include="BSpline.h" />
     <ClInclude Include="GeneratedFiles\ui_CgalUiApplication.h" />
     <ClInclude Include="MyViewer.h" />
+    <ClInclude Include="PNHelper.h" />
+    <ClInclude Include="PNOctahedron.h" />
+    <ClInclude Include="PNTriangle.h" />
     <ClInclude Include="typedefs.h" />
   </ItemGroup>
   <ItemGroup>

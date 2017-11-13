@@ -15,6 +15,8 @@ CgalUiApplication::CgalUiApplication(QWidget *parent)
     connect(ui.buildSphereVolumeButton, SIGNAL(clicked()), this, SLOT(buildSphereVolume()));
     connect(ui.drawSpline3Button, SIGNAL(clicked()), this, SLOT(drawSpline3()));
     connect(ui.drawSpline2Button, SIGNAL(clicked()), this, SLOT(drawSpline2()));
+    connect(ui.buildTriangleButton, SIGNAL(clicked()), this, SLOT(drawTriangle()));
+    connect(ui.buildOctahedronButton, SIGNAL(clicked()), this, SLOT(buildOctahedron()));
 }
 
 void CgalUiApplication::addPoint() {
@@ -64,4 +66,14 @@ void CgalUiApplication::drawSpline3() {
 void CgalUiApplication::drawSpline2() {
     ui.widget->isSpline = !ui.widget->isSpline;
     ui.widget->k = 2;
+}
+
+void CgalUiApplication::drawTriangle() {
+    ui.widget->isTriangle = !ui.widget->isTriangle;
+    ui.widget->drawTriangle();
+}
+
+void CgalUiApplication::buildOctahedron() {
+    ui.widget->isOctahedron = !ui.widget->isOctahedron;
+    ui.widget->drawOctahedron();
 }

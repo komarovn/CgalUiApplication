@@ -23,6 +23,12 @@ void MyViewer::draw() {
         BSpline spline = BSpline(&points);
         drawBSpline(spline);
     }
+    if (isTriangle) {
+        drawTriangle();
+    }
+    if (isOctahedron) {
+        drawOctahedron();
+    }
 }
 
 void MyViewer::init() {
@@ -187,4 +193,12 @@ void MyViewer::generateSphereVolume() {
 
 void MyViewer::drawBSpline(BSpline bSpline) {
     bSpline.drawSplineCurve(k);
+}
+
+void MyViewer::drawTriangle() {
+    this->pnTriangle.drawTriangle();
+}
+
+void MyViewer::drawOctahedron() {
+    this->pnOctahedron.drawOctahedron();
 }

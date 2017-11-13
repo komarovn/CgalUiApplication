@@ -51,6 +51,12 @@
     <ClCompile Include="BSpline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PNTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PNOctahedron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CgalUiApplication.h">
@@ -74,6 +80,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BSpline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PNTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PNOctahedron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PNHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

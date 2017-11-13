@@ -20,6 +20,8 @@ public:
     void buildSphereVolume();
     void drawSpline3();
     void drawSpline2();
+    void drawTriangle();
+    void buildOctahedron();
 private:
     Ui::CgalUiApplicationClass ui;
 };
