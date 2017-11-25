@@ -63,11 +63,11 @@ void PNTriangle::drawTriangle(int level) {
         Point_3 point2 = triangles[i].getPoint2();
         Point_3 point3 = triangles[i].getPoint3();
 
-        glColor3f(0.0, 0.0, 1.0);
+        //glColor3f(0.0, 0.0, 1.0);
         drawPoint(point1.x(), point1.y(), point1.z());
-        glColor3f(0.0, 1.0, 0.0);
+        //glColor3f(0.0, 1.0, 0.0);
         drawPoint(point2.x(), point2.y(), point2.z());
-        glColor3f(1.0, 0.0, 0.0);
+        //glColor3f(1.0, 0.0, 0.0);
         drawPoint(point3.x(), point3.y(), point3.z());
     }
 
@@ -77,8 +77,8 @@ void PNTriangle::drawTriangle(int level) {
 void PNTriangle::drawPoint(double u, double v, double w) {
     Point_3 p = calculateP(u, v, w);
     Point_3 n = calculateN(u, v, w);
-    glNormal3f(p.x(), p.y(), p.z());
-    glVertex3f(n.x(), n.y(), n.z());
+    glNormal3f(n.x(), n.y(), n.z());
+    glVertex3f(p.x(), p.y(), p.z());
 }
 
 void PNTriangle::calcPNcoefs() {
