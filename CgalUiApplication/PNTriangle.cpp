@@ -24,28 +24,26 @@ void PNTriangle::drawTriangle(int level) {
     for (int i = 0; i <= level; i++)
         for (int j = 0; j < level_counter[i]; j++) {
             if (j == 0 && i != 0) {
-                triangles.push_back(
-                    Triangle(triangles[triangles.size() - level_counter[i - 1]].getPoint2(),
-                    Point_3(
-                        triangles[triangles.size() - level_counter[i - 1]].getPoint2().x() + size, 0, 
-                        triangles[triangles.size() - level_counter[i - 1]].getPoint2().z() - size),
-                    Point_3(
-                        triangles[triangles.size() - level_counter[i - 1]].getPoint2().x(), 
-                        triangles[triangles.size() - level_counter[i - 1]].getPoint2().y() + size,
-                        triangles[triangles.size() - level_counter[i - 1]].getPoint2().z() - size)
-                    )
-                );
+                Point_3 point2 = triangles[triangles.size() - level_counter[i - 1]].getPoint2();
+                triangles.push_back(Triangle(
+                    point2,
+                    Point_3(point2.x() + size, 0, point2.z() - size),
+                    Point_3(point2.x(), point2.y() + size, point2.z() - size)));
             }
             else if (j != 0) {
                 Point_3 point1 = triangles.back().getPoint1();
                 Point_3 point2 = triangles.back().getPoint2();
                 Point_3 point3 = triangles.back().getPoint3();
                 if (side == 0) {
-                    triangles.push_back(Triangle(point2, point3, Point_3(point2.x(), point2.y() + size, point2.z() - size)));
+                    triangles.push_back(Triangle(
+                        point2,
+                        point3,
+                        Point_3(point2.x(), point2.y() + size, point2.z() - size)));
                     side = 1;
                 }
                 else {
-                    triangles.push_back(Triangle(point1,
+                    triangles.push_back(Triangle(
+                        point1,
                         Point_3(point1.x() - size, point1.y() + size, point1.z()),
                         Point_3(point1.x(), point1.y() + size, point1.z() - size)));
                     side = 0;
@@ -65,8 +63,11 @@ void PNTriangle::drawTriangle(int level) {
         Point_3 point2 = triangles[i].getPoint2();
         Point_3 point3 = triangles[i].getPoint3();
 
+        glColor3f(0.0, 0.0, 1.0);
         drawPoint(point1.x(), point1.y(), point1.z());
+        glColor3f(0.0, 1.0, 0.0);
         drawPoint(point2.x(), point2.y(), point2.z());
+        glColor3f(1.0, 0.0, 0.0);
         drawPoint(point3.x(), point3.y(), point3.z());
     }
 
