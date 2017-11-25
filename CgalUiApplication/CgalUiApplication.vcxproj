@@ -119,6 +119,7 @@
     <ClInclude Include="PNHelper.h" />
     <ClInclude Include="PNOctahedron.h" />
     <ClInclude Include="PNTriangle.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="typedefs.h" />
   </ItemGroup>
   <ItemGroup>

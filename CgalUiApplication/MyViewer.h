@@ -16,6 +16,7 @@ public:
     size_t movePointIndex = -1;
     QPoint* oldMousePosition;
     int k;
+    int detalizationLevel = 1;
     bool isRemovePointMode = false;
     bool isMovePointMode = false;
     void removeAllPoints();

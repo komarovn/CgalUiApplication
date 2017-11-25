@@ -70,6 +70,8 @@ void CgalUiApplication::drawSpline2() {
 
 void CgalUiApplication::drawTriangle() {
     ui.widget->isTriangle = !ui.widget->isTriangle;
+    int detalizationLevel = QString(ui.detalizationLevelTextbox->text()).toInt();
+    ui.widget->detalizationLevel = detalizationLevel;
     ui.widget->drawTriangle();
 }
 

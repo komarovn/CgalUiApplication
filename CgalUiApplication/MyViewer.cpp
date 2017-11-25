@@ -196,7 +196,7 @@ void MyViewer::drawBSpline(BSpline bSpline) {
 }
 
 void MyViewer::drawTriangle() {
-    this->pnTriangle.drawTriangle();
+    this->pnTriangle.drawTriangle(detalizationLevel);
 }
 
 void MyViewer::drawOctahedron() {
