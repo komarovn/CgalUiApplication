@@ -57,7 +57,7 @@ void PNTriangle::drawTriangle(int level) {
     calcPNcoefs();
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glColor3f(1.0, 0.9, 0.5);
+    glColor3f(0.2, 0.6, 0.9);
     glBegin(GL_TRIANGLES);
 
     for (int i = 0; i < trianglesCount; i++) {

@@ -200,5 +200,5 @@ void MyViewer::drawTriangle() {
 }
 
 void MyViewer::drawOctahedron() {
-    this->pnOctahedron.drawOctahedron();
+    this->pnOctahedron.drawOctahedron(detalizationLevel);
 }

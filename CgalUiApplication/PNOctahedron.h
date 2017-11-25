@@ -1,11 +1,11 @@
 #pragma once
-#include "typedefs.h"
+#include "PNTriangle.h"
 
 class PNOctahedron {
 public:
     PNOctahedron(float scale);
-    void drawOctahedron();
+    void drawOctahedron(int detalizationLevel);
 private:
     float scale;
-    Points3 basePoints;
+    std::vector<PNTriangle> triangles;
 };
