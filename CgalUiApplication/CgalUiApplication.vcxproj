@@ -71,6 +71,7 @@
   <ItemGroup>
     <ClCompile Include="BSpline.cpp" />
     <ClCompile Include="CgalUiApplication.cpp" />
+    <ClCompile Include="ChaikinAlgorythm.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_CgalUiApplication.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -114,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BSpline.h" />
+    <ClInclude Include="ChaikinAlgorythm.h" />
     <ClInclude Include="GeneratedFiles\ui_CgalUiApplication.h" />
     <ClInclude Include="MyViewer.h" />
     <ClInclude Include="PNHelper.h" />

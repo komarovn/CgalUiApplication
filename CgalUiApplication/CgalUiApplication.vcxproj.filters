@@ -57,6 +57,9 @@
     <ClCompile Include="PNOctahedron.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChaikinAlgorythm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CgalUiApplication.h">
@@ -92,6 +95,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaikinAlgorythm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

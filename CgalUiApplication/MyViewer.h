@@ -7,6 +7,7 @@
 #include "BSpline.h"
 #include "PNTriangle.h"
 #include "PNOctahedron.h"
+#include "ChaikinAlgorythm.h"
 
 class MyViewer : public QGLViewer {
 public:
