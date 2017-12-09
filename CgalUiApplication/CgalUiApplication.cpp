@@ -82,6 +82,6 @@ void CgalUiApplication::buildOctahedron() {
 }
 
 void CgalUiApplication::applyChaikinAlgorithm() {
-    ui.widget->isChaikin = !ui.widget->isChaikin;
+    ui.widget->isChaikin = true; // !ui.widget->isChaikin;
     ui.widget->applyChaikinAlgorithm();
 }

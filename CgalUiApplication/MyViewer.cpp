@@ -29,21 +29,11 @@ void MyViewer::draw() {
     if (isOctahedron) {
         drawOctahedron();
     }
-
-    std::vector<Point_3> points;
-    points.push_back(Point_3(-0.5, -0.5, 0));
-    points.push_back(Point_3(-0.5, 0.5, 0));
-    points.push_back(Point_3(0.5, -0.5, 0));
-    points.push_back(Point_3(0.5, 0.5, 0));
-
-    ChaikinAlgorythm chaikinAlgorythm(points);
-    chaikinAlgorythm.apply();
-    chaikinAlgorythm.apply();
-    chaikinAlgorythm.apply(); 
-    chaikinAlgorythm.apply();
-    chaikinAlgorythm.apply();
-    chaikinAlgorythm.apply();
-    chaikinAlgorythm.drawQuadrangle();
+    if (isChaikin) {
+        if (chaikinAlgorythm != nullptr) {
+            chaikinAlgorythm->drawQuadrangle();
+        }
+    }
 }
 
 void MyViewer::init() {
@@ -219,5 +209,15 @@ void MyViewer::drawOctahedron() {
 }
 
 void MyViewer::applyChaikinAlgorithm() {
-    //TODO: chaikin goes here
+    if (chaikinAlgorythm == nullptr) {
+        std::vector<Point_3> points;
+        points.push_back(Point_3(-0.5, -0.5, 0));
+        points.push_back(Point_3(-0.5, 0.5, 0));
+        points.push_back(Point_3(0.5, -0.5, 0));
+        points.push_back(Point_3(0.5, 0.5, 0));
+        chaikinAlgorythm = new ChaikinAlgorythm(points);
+    }
+    chaikinAlgorythm->apply();
+    chaikinAlgorythm->drawQuadrangle();
+    this->update();
 }

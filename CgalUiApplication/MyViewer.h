@@ -46,4 +46,5 @@ private:
     PNTriangle pnTriangle = PNTriangle(Point_3(0, -1, 0), Point_3(1, 0, 0), Point_3(0, 0, 1),
         Point_3(0, -1, 0), Point_3(1, 0, 0), Point_3(0, 0, 1));
     PNOctahedron pnOctahedron = PNOctahedron(1.0f);
+    ChaikinAlgorythm *chaikinAlgorythm = nullptr;
 };
