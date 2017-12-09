@@ -217,3 +217,7 @@ void MyViewer::drawTriangle() {
 void MyViewer::drawOctahedron() {
     this->pnOctahedron.drawOctahedron(detalizationLevel);
 }
+
+void MyViewer::applyChaikinAlgorithm() {
+    //TODO: chaikin goes here
+}

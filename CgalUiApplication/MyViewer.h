@@ -13,13 +13,18 @@ class MyViewer : public QGLViewer {
 public:
     MyViewer(QWidget* parent);
     Points3 points;
-    //Point_3* movePoint = nullptr;
     size_t movePointIndex = -1;
     QPoint* oldMousePosition;
     int k;
     int detalizationLevel = 1;
+
     bool isRemovePointMode = false;
     bool isMovePointMode = false;
+    bool isSpline = false;
+    bool isTriangle = false;
+    bool isOctahedron = false;
+    bool isChaikin = false;
+
     void removeAllPoints();
     void generateCube();
     void generateCubeVolume();
@@ -28,9 +33,7 @@ public:
     void drawBSpline(BSpline bSpline);
     void drawTriangle();
     void drawOctahedron();
-    bool isSpline = false;
-    bool isTriangle = false;
-    bool isOctahedron = false;
+    void applyChaikinAlgorithm();
 protected:
     virtual void draw();
     virtual void init();

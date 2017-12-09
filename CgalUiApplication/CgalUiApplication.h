@@ -22,6 +22,7 @@ public:
     void drawSpline2();
     void drawTriangle();
     void buildOctahedron();
+    void applyChaikinAlgorithm();
 private:
     Ui::CgalUiApplicationClass ui;
 };

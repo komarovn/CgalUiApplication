@@ -17,6 +17,7 @@ CgalUiApplication::CgalUiApplication(QWidget *parent)
     connect(ui.drawSpline2Button, SIGNAL(clicked()), this, SLOT(drawSpline2()));
     connect(ui.buildTriangleButton, SIGNAL(clicked()), this, SLOT(drawTriangle()));
     connect(ui.buildOctahedronButton, SIGNAL(clicked()), this, SLOT(buildOctahedron()));
+    connect(ui.chaikinMakeStepButton, SIGNAL(clicked()), this, SLOT(applyChaikinAlgorithm()));
 }
 
 void CgalUiApplication::addPoint() {
@@ -78,4 +79,9 @@ void CgalUiApplication::drawTriangle() {
 void CgalUiApplication::buildOctahedron() {
     ui.widget->isOctahedron = !ui.widget->isOctahedron;
     ui.widget->drawOctahedron();
+}
+
+void CgalUiApplication::applyChaikinAlgorithm() {
+    ui.widget->isChaikin = !ui.widget->isChaikin;
+    ui.widget->applyChaikinAlgorithm();
 }
