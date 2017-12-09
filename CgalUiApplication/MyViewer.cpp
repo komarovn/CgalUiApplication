@@ -2,6 +2,7 @@
 
 #include <QMouseEvent>
 #include <typedefs.h>
+#include "ChaikinAlgorythm.h"
 
 #define PI 3.1415926535
 
@@ -210,11 +211,11 @@ void MyViewer::drawOctahedron() {
 
 void MyViewer::applyChaikinAlgorithm() {
     if (chaikinAlgorythm == nullptr) {
-        std::vector<Point_3> points;
-        points.push_back(Point_3(-0.5, -0.5, 0));
-        points.push_back(Point_3(-0.5, 0.5, 0));
-        points.push_back(Point_3(0.5, -0.5, 0));
-        points.push_back(Point_3(0.5, 0.5, 0));
+        std::vector<ChaikinPoint> points;
+        points.push_back(ChaikinPoint(Point_3(-0.5, -0.5, 0), 1));
+        points.push_back(ChaikinPoint(Point_3(-0.5, 0.5, 0), 2));
+        points.push_back(ChaikinPoint(Point_3(0.5, -0.5, 0), 3));
+        points.push_back(ChaikinPoint(Point_3(0.5, 0.5, 0), 2));
         chaikinAlgorythm = new ChaikinAlgorythm(points);
     }
     chaikinAlgorythm->apply();
