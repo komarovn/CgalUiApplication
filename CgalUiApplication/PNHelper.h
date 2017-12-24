@@ -34,3 +34,14 @@ Point_3 nn(Point_3 i, Point_3 j) {
     );
     return normalize(nij);
 }
+
+Point_3 calculateNormal(Point_3 base, Point_3 point1, Point_3 point2) {
+    Point_3 v1 = Point_3(point1.x() - base.x(), point1.y() - base.y(), point1.z() - base.z());
+    Point_3 v2 = Point_3(point2.x() - base.x(), point2.y() - base.y(), point2.z() - base.z());
+
+    Point_3 normal = Point_3(v1.y() * v2.z() - v2.y() * v1.z(),
+        -v1.x() * v2.z() + v2.x() * v1.z(),
+        v1.x() * v2.y() - v2.x() * v1.y());
+
+    return normalize(normal);
+}

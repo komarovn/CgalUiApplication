@@ -60,6 +60,9 @@
     <ClCompile Include="ChaikinAlgorythm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MeshParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="CgalUiApplication.h">
@@ -100,5 +103,13 @@
     <ClInclude Include="ChaikinAlgorythm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MeshParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CgalTest\CgalTest\Resources\out_bis.mesh">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

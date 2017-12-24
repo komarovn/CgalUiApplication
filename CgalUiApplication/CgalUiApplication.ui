@@ -281,6 +281,19 @@
      <string>Chaikin Make Step</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="parseFileButton">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>160</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Parse File</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -5,14 +5,16 @@
 #include <qmessagebox.h>
 #include <qmouseeventtransition.h>
 #include "BSpline.h"
-#include "PNTriangle.h"
 #include "PNOctahedron.h"
 #include "ChaikinAlgorythm.h"
+#include "MeshParser.h"
 
 class MyViewer : public QGLViewer {
 public:
     MyViewer(QWidget* parent);
     Points3 points;
+    Triangles triangles;
+    Tetrahedra tetrahedra;
     size_t movePointIndex = -1;
     QPoint* oldMousePosition;
     int k;
@@ -34,6 +36,7 @@ public:
     void drawTriangle();
     void drawOctahedron();
     void applyChaikinAlgorithm();
+    void parseFile();
 protected:
     virtual void draw();
     virtual void init();

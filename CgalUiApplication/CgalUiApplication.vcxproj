@@ -85,6 +85,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeshParser.cpp" />
     <ClCompile Include="MyViewer.cpp" />
     <ClCompile Include="PNOctahedron.cpp" />
     <ClCompile Include="PNTriangle.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="BSpline.h" />
     <ClInclude Include="ChaikinAlgorythm.h" />
     <ClInclude Include="GeneratedFiles\ui_CgalUiApplication.h" />
+    <ClInclude Include="MeshParser.h" />
     <ClInclude Include="MyViewer.h" />
     <ClInclude Include="PNHelper.h" />
     <ClInclude Include="PNOctahedron.h" />
@@ -135,6 +137,9 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\CgalTest\CgalTest\Resources\out_bis.mesh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

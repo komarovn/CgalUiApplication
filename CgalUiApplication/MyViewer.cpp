@@ -3,8 +3,34 @@
 #include <QMouseEvent>
 #include <typedefs.h>
 #include "ChaikinAlgorythm.h"
+#include "MeshParser.h"
+
 
 #define PI 3.1415926535
+
+double len1(Point_3 p) {
+    return sqrt(p.x() * p.x() + p.y() * p.y() + p.z() * p.z());
+}
+
+Point_3 normalize1(Point_3 p) {
+    double length = len1(p);
+    return Point_3(p.x() / length, p.y() / length, p.z() / length);
+}
+
+Point_3 calculateNormal1(Point_3 base, Point_3 point1, Point_3 point2) {
+    Point_3 v1 = Point_3(point1.x() - base.x(), point1.y() - base.y(), point1.z() - base.z());
+    Point_3 v2 = Point_3(point2.x() - base.x(), point2.y() - base.y(), point2.z() - base.z());
+
+    Point_3 normal = Point_3(v1.y() * v2.z() - v2.y() * v1.z(),
+        -v1.x() * v2.z() + v2.x() * v1.z(),
+        v1.x() * v2.y() - v2.x() * v1.y());
+
+    return normalize1(normal);
+}
+
+double calcScalar(Point_3 p1, Point_3 p2) {
+    return p1.x() * p2.x() + p1.y() * p2.y() + p1.x() * p2.y();
+}
 
 MyViewer::MyViewer(QWidget* parent) : QGLViewer(parent) {
     setBackgroundColor(QColor(139, 169, 180));
@@ -20,6 +46,68 @@ void MyViewer::draw() {
         glVertex3f(points[i].x(), points[i].y(), points[i].z());
     }
     glEnd();
+
+    /*glBegin(GL_LINES);
+    glColor3f(240.0f, 15.0f, 23.0f);
+    for (int i = 0; i < triangles.size(); ++i) {
+        Triangle triangle = triangles[i];
+        glVertex3f(triangle.getPoint1().x(), triangle.getPoint1().y(), triangle.getPoint1().z());
+        glVertex3f(triangle.getPoint2().x(), triangle.getPoint2().y(), triangle.getPoint2().z());
+        glVertex3f(triangle.getPoint2().x(), triangle.getPoint2().y(), triangle.getPoint2().z());
+        glVertex3f(triangle.getPoint3().x(), triangle.getPoint3().y(), triangle.getPoint3().z());
+        glVertex3f(triangle.getPoint3().x(), triangle.getPoint3().y(), triangle.getPoint3().z());
+        glVertex3f(triangle.getPoint1().x(), triangle.getPoint1().y(), triangle.getPoint1().z());
+    }
+    glEnd();*/
+
+    /*glBegin(GL_LINES);
+    glColor3f(.9f, .3f, .1f);
+    for (int i = 0; i < tetrahedra.size(); i++) {
+        Tetrahedron tetrahedron = tetrahedra[i];
+        glVertex3f(tetrahedron.getPoint1().x(), tetrahedron.getPoint1().y(), tetrahedron.getPoint1().z());
+        glVertex3f(tetrahedron.getPoint2().x(), tetrahedron.getPoint2().y(), tetrahedron.getPoint2().z());
+
+        glVertex3f(tetrahedron.getPoint3().x(), tetrahedron.getPoint3().y(), tetrahedron.getPoint3().z());
+        glVertex3f(tetrahedron.getPoint4().x(), tetrahedron.getPoint4().y(), tetrahedron.getPoint4().z());
+
+        glVertex3f(tetrahedron.getPoint1().x(), tetrahedron.getPoint1().y(), tetrahedron.getPoint1().z());
+        glVertex3f(tetrahedron.getPoint4().x(), tetrahedron.getPoint4().y(), tetrahedron.getPoint4().z());
+
+        glVertex3f(tetrahedron.getPoint2().x(), tetrahedron.getPoint2().y(), tetrahedron.getPoint2().z());
+        glVertex3f(tetrahedron.getPoint4().x(), tetrahedron.getPoint4().y(), tetrahedron.getPoint4().z());
+
+        glVertex3f(tetrahedron.getPoint1().x(), tetrahedron.getPoint1().y(), tetrahedron.getPoint1().z());
+        glVertex3f(tetrahedron.getPoint3().x(), tetrahedron.getPoint3().y(), tetrahedron.getPoint3().z());
+
+        glVertex3f(tetrahedron.getPoint2().x(), tetrahedron.getPoint2().y(), tetrahedron.getPoint2().z());
+        glVertex3f(tetrahedron.getPoint3().x(), tetrahedron.getPoint3().y(), tetrahedron.getPoint3().z());
+    }
+    glEnd();*/
+
+    glBegin(GL_TRIANGLES);
+    glColor3f(.9f, .3f, .1f);
+    for (int i = 0; i < tetrahedra.size(); i++) {
+        Tetrahedron tetrahedron = tetrahedra[i];
+        glVertex3f(tetrahedron.getPoint1().x(), tetrahedron.getPoint1().y(), tetrahedron.getPoint1().z());
+        glVertex3f(tetrahedron.getPoint2().x(), tetrahedron.getPoint2().y(), tetrahedron.getPoint2().z());
+        glVertex3f(tetrahedron.getPoint3().x(), tetrahedron.getPoint3().y(), tetrahedron.getPoint3().z());
+    }
+    glEnd();
+
+    glBegin(GL_LINES);
+    for (int i = 0; i < triangles.size(); i++) {
+        Triangle triangle = triangles[i];
+
+        glVertex3f(triangle.getPoint1().x(), triangle.getPoint1().y(), triangle.getPoint1().z());
+        Point_3 normal = calculateNormal1(triangle.getPoint1(), triangle.getPoint2(), triangle.getPoint3());
+        glVertex3f(triangle.getPoint1().x() + normal.x(), triangle.getPoint1().y() + normal.y(), triangle.getPoint1().z() + normal.z());
+
+        //glVertex3f(tetrahedron.getPoint2().x(), tetrahedron.getPoint2().y(), tetrahedron.getPoint2().z());
+        //glVertex3f(tetrahedron.getPoint3().x(), tetrahedron.getPoint3().y(), tetrahedron.getPoint3().z());
+    }
+    glEnd();
+
+
     if (isSpline) {
         BSpline spline = BSpline(&points);
         drawBSpline(spline);
@@ -221,4 +309,19 @@ void MyViewer::applyChaikinAlgorithm() {
     chaikinAlgorythm->apply();
     chaikinAlgorythm->drawQuadrangle();
     this->update();
+}
+
+void MyViewer::parseFile() {
+    MeshParser parser = MeshParser("Resources/out_bis.mesh");
+    parser.parse();
+    points.clear();
+    //for (Point_3 point : parser.getPoints()) {
+    //    points.push_back(point);
+    //}
+    for (Triangle triangle : parser.getTriangles()) {
+        triangles.push_back(triangle);
+    }
+    for (Tetrahedron tetrahedron : parser.getTetrahedra()) {
+        tetrahedra.push_back(tetrahedron);
+    }
 }

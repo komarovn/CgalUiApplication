@@ -23,6 +23,7 @@ public:
     void drawTriangle();
     void buildOctahedron();
     void applyChaikinAlgorithm();
+    void parseFile();
 private:
     Ui::CgalUiApplicationClass ui;
 };
